@@ -7,7 +7,15 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 IMG_SIZE = (128, 128)
 BATCH_SIZE = 32
 
-train_gen = ImageDataGenerator(rescale=1./255)
+train_gen = ImageDataGenerator(
+    rescale=1./255,
+    rotation_range=30,
+    width_shift_range=0.2,
+    height_shift_range=0.2,
+    zoom_range=0.2,
+    horizontal_flip=True
+)
+
 val_gen = ImageDataGenerator(rescale=1./255)
 
 train_data = train_gen.flow_from_directory(
